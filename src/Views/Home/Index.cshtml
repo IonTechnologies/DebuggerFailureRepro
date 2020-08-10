@@ -1,0 +1,15 @@
+﻿@model debug_failure.Areas.Identity.Data.User
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>Hello, @Model.FullName</div>
+
+<ul>
+    @foreach(var data in Model.UserData)
+    {
+        <li>@data.Data</li>
+    }
+
+</ul>
+

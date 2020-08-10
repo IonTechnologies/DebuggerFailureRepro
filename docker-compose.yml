@@ -1,0 +1,33 @@
+version: '3'
+services:
+    pgadmin:
+      image: dpage/pgadmin4
+      links:
+        - postgres
+      depends_on:
+        - postgres
+      environment:
+        PGADMIN_DEFAULT_EMAIL: user@example.com
+        PGADMIN_DEFAULT_PASSWORD: password1
+      volumes:
+        - pgadmin:/root/.pgadmin
+      ports:
+        - "8888:80"
+    postgres:
+        image: "postgres:12-alpine"
+        environment:
+          - PGCLIENTENCODING=UTF-8
+          - POSTGRES_INITDB_ARGS="--locale=en_US.UTF-8"
+          - POSTGRES_PASSWORD=debug_failure
+          - POSTGRES_DB=debug_failure
+          - POSTGRES_USER=debug_failure
+          - PGPASSWORD=debug_failure
+          - PGDATA=/var/lib/postgres
+        volumes:
+          - postgres-data:/var/lib/postgres
+        ports:
+          - "5432:5432"
+volumes:
+    postgres-data:
+    pgadmin:
+          
